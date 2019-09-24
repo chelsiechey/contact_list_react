@@ -12,6 +12,14 @@ class App extends Component {
     ]
   }
 
+  removeContact = (id) => {
+    const contacts = this.state.contacts.filter( contact => {
+      if ( contact.id !== id )
+        return contact
+    })
+    this.setState({ contacts: [...contacts ]})
+  }
+
   getId = () => {
     // NOTE We are just using this as a helper function for id's since we aren't using a db yet
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -37,7 +45,7 @@ class App extends Component {
           bordered
           size='medium'
         />
-        <ContactList contacts={contacts} />
+        <ContactList contacts={contacts} remove={this.removeContact} />
       </Container>
     )
   }
