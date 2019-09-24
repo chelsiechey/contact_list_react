@@ -9,6 +9,14 @@ class ContactForm extends Component {
     this.setState({ [name]: value })
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    // call a function to add the item
+    this.props.add(this.state)
+    // cleanup phase
+    this.setState({ firstName: '', phone: ''})
+  }
+
   render() {
     const { firstName, phone } = this.state
     return (
